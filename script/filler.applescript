@@ -2,16 +2,28 @@
 // This script will extract a ticket name from the currently active branch and insert it in the commit field.
 
 
+// Current supported applications
+
+const applications = {
+	Tower: {
+		process: getProcess('Tower'),
+		get commitField() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].textFields[1] },
+		get branchName() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].buttons[0].title() }
+	},
+	SourceTree: {
+		process: getProcess('SourceTree'),
+		get commitField() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].splitterGroups[0].scrollAreas[0].textAreas[0] },
+		get branchName() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].splitterGroups[0].checkboxes[0].title() }
+	}
+}
+
+
 // Configurable properties
 
-var supportedApplications = {								// The application name as shown in the menu bar when being run
-	TOWER: 'Tower',
-	SOURCETREE: 'SourceTree'
-}
-var currentApplication = supportedApplications.TOWER		// The application for which the script should run
-var debugMode = false										// When enabled, error messages will be shown in a dialog message
-var refreshInterval = 0.5									// Number of seconds between each refresh interval
-var ticketProperties = {									// Various properties which describe the Jira ticket name (e.g. TMA-1952)
+const selectedApplication = applications.Tower		// The application for which the script should run
+const debugMode = false								// When enabled, error messages will be shown in a dialog message
+const refreshInterval = 0.5							// Number of seconds between each refresh interval
+const ticketProperties = {							// Various properties which describe a ticket name (e.g. TMA-1952)
 	prefix: 'TMA',
 	delimiter: '-',
 	numberOfDigits: 4
@@ -34,62 +46,21 @@ function idle() {
 
 function tryPrefillingCommitMessage() {
 	try {
-		let commitField = getCommitFieldForApplicationWithName(currentApplication)
-		let branchName = getActiveBranchNameForApplicationWithName(currentApplication)
-		let ticketName = getTicketNameFromBranchName(branchName, ticketProperties)
-		prefillCommitFieldWithMessage(ticketName, commitField)
+		const ticketName = getTicketNameFromBranchName(selectedApplication.branchName, ticketProperties)
+		insertValueInCommitField(ticketName, selectedApplication.commitField)
 	} catch (error) {
 		handleError(error)
 	}
 }
 
 
-// Commit field handling
+// Helper functions
 
-function prefillCommitFieldWithMessage(message, commitField) {
+function insertValueInCommitField(message, commitField) {
 	if (!message || !commitField.exists()) { return }
 	if (commitField.value().length == 0 || commitField.value().includes(message)) { return }
 	
 	commitField.value = `${message}: ` + commitField.value()
-}
-
-function getCommitFieldForApplicationWithName(name) {
-	const applicationView = getApplicationViewForApplicationWithName(name)
-	
-	switch (name) {
-	
-		case supportedApplications.TOWER:
-			return applicationView.windows[0].splitterGroups[0].splitterGroups[0].textFields[1]
-			break
-			
-		case supportedApplications.SOURCETREE:
-			return applicationView.windows[0].splitterGroups[0].splitterGroups[0].splitterGroups[0].scrollAreas[0].textAreas[0]
-			break
-			
-		default:
-			return null
-	}
-}
-
-
-// Branch name handling
-
-function getActiveBranchNameForApplicationWithName(name) {
-	const applicationView = getApplicationViewForApplicationWithName(name)
-	
-	switch (name) {
-	
-		case supportedApplications.TOWER:
-			return applicationView.windows[0].splitterGroups[0].splitterGroups[0].buttons[0].title()
-			break
-			
-		case supportedApplications.SOURCETREE:
-			return applicationView.windows[0].splitterGroups[0].splitterGroups[0].splitterGroups[0].checkboxes[0].title()
-			break
-			
-		default:
-			return null
-	}
 }
 
 function getTicketNameFromBranchName(branchName, ticketProperties) {
@@ -98,11 +69,8 @@ function getTicketNameFromBranchName(branchName, ticketProperties) {
 	return (matches && matches.length > 0 ? matches[0] : null)
 }
 
-
-// Helper functions
-
-function getApplicationViewForApplicationWithName(name) {
-	return Application('System Events').processes[name]
+function getProcess(name) {
+	return Application('System Events').processes.byName(name)
 }
 
 
