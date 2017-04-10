@@ -26,7 +26,7 @@ function run() {
 
 function idle() {
 	tryPrefillingCommitMessage()
-    return refreshInterval
+	return refreshInterval
 }
 
 
@@ -116,5 +116,5 @@ function handleError(error) {
 function displayDialogWithMessage(messageToDisplay) {
 	const app = Application.currentApplication()
 	app.includeStandardAdditions = true
-    app.displayDialog(messageToDisplay, { buttons: ["Ok"] })
+	app.displayDialog(messageToDisplay, { buttons: ["Ok"] })
 }
