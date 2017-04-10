@@ -18,10 +18,10 @@ Application('System Events').processes['Tower'].windows[0].splitterGroups[0].spl
 ```
 # Download
 
-Below can download an exported version of the script (as stabdalone "stay-open" app) for:
+Below can download an exported version of the script as stabdalone "stay-open" app:
 
-- [Tower](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
-- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
+- [Tower](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
+- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
 
 
 # TODO
