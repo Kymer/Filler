@@ -1,7 +1,7 @@
 # Filler
 Filler is a JXA script which automates prepending of ticket names in commit messages in GUI-based git applications such as Tower or SourceTree.
 
-![tower-demo](demo-tower.gif)
+![tower-demo](readme-assets/demo-tower.gif)
 
 # Useful links
 - [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html) - official documentation by Apple
