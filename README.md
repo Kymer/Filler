@@ -16,6 +16,13 @@ The relevant UI elements, such as the commit field, can be referenced with JXA l
 ```
 Application('System Events').processes['Tower'].windows[0].splitterGroups[0].splitterGroups[0].textFields[1].value()
 ```
+# Download
+
+Below can download an exported version of the script (as stabdalone "stay-open" app) for:
+
+- [Tower](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
+- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
+
 
 # TODO
 - [ ] Readme: Add 'installation' instructions
