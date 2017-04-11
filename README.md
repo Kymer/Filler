@@ -29,7 +29,7 @@ The script currently works with [Tower](https://www.git-tower.com/mac/) and [Sou
 
 The first thing you will want to customise are the properties which describe the structure of a ticket / issue name. Simply adjust the `ticketProperties` as shown below. In this example the properties are set-up to match an example Jira ticket with name: **TMA-1004**.  
 
-```
+```javascript
 const ticketProperties = {
 	prefix: 'TMA',
 	delimiter: '-',
@@ -39,7 +39,7 @@ const ticketProperties = {
 
 Another important property is the `selectedApplication`. This should point to an object which is defined higher up in the `applications` variable. This is how you for example make the script run for Tower:
 
-```
+```javascript
 const selectedApplication = applications.Tower
 ```
 
@@ -51,30 +51,29 @@ You can easily add other applications to the script by adding it to `application
 
 - **application name** as seen in the menu bar next to the  menu item,
 - the UI hierarchy "**path**" pointing to the **commit** field, i.e. where you would *type* the commit message,
-- and the UI hierarchy "**path**" pointing to the text value of the current **active branch** name. The branch name should *contain* the ticket number you wish to insert in the commit field.
+- and the UI hierarchy "**path**" pointing to current **active branch** name. The branch name should *contain* the ticket number you wish to insert in the commit field.
 
 Take a look at this example for Tower:
 
-```
+```javascript
 const applications = {
 	Tower: {
 		process: getProcess('Tower'),
 		get commitField() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].textFields[1] },
 		get branchName() { return this.process.windows[0].splitterGroups[0].splitterGroups[0].buttons[0].title() }
 	}
-	// [ ... ]
 }
 ```
 
 The hardest part is figuring out the exact hierarchy of the UI elements. To explore the UI hierarchy of any Cocoa application you can use various tools to make your life easier:
 
-- Apple's Accessibility Inspector (included with Xcode)
-- PFiddlesoft's excellent UI Browser (which can output usable AppleScript snippets)
+- Apple's [Accessibility Inspector](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html) (included with Xcode)
+- PFiddlesoft's excellent [UI Browser](http://pfiddlesoft.com/uibrowser/) (which can output usable AppleScript snippets)
 
 
 # Download
 
-Below can download an exported version of the script as stabdalone "stay-open" app:
+Below can download an exported version of the script as stabdalone "stay-open" app that works with:
 
 - [Tower](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
 - [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
