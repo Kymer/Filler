@@ -80,7 +80,7 @@ Below can download an exported version of the script as stabdalone "stay-open" a
 - [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
 
 
-Make sure you add the downloaded app to Accessibility list under Privacy tab in the *System Preferences > Security & Privacy* pref pane.![screenshot-security-prefpane](/Users/kymer/Developer/Personal/Filler/readme-assets/screenshot-security-prefpane.png)
+Make sure you add the downloaded app to Accessibility list under Privacy tab in the *System Preferences > Security & Privacy* pref pane.![screenshot-security-prefpane](readme-assets/screenshot-security-prefpane.png)
 
 # TODO
 
