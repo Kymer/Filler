@@ -75,8 +75,8 @@ The hardest part is figuring out the exact hierarchy of the UI elements. To expl
 
 Below can download an exported version of the script as stabdalone "stay-open" app that works with:
 
-- [Tower](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
-- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
+- [Tower](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.zip)
+- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.zip)
 
 
 Make sure you add the downloaded app to Accessibility list under Privacy tab in the *System Preferences > Security & Privacy* pref pane.![screenshot-security-prefpane](readme-assets/screenshot-security-prefpane.png)
