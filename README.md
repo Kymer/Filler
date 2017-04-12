@@ -21,13 +21,13 @@ Filler is a macOS [JXA](https://developer.apple.com/library/content/releasenotes
 
 # How it works
 
-The script uses macOS GUI scripting to 'extract' UI elements from Cocoa-based applications. This can be done with Apple Script or JavaScript (JXA). The UI elements can be manipulated as needed. This is obviously not a robust solution, as any update to the application (and thus UI hierarchy) may break the script. A better way to interact with applications is by means of [Apple Events](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html), but not all apps expose or support those. For applications which don't expose Apple Events, UI automation is a valid, yet slightly cumbersome, alternative.
+The script uses macOS **GUI scripting** to 'extract' UI elements from Cocoa-based applications. This can be done with Apple Script or JavaScript (JXA). The UI elements can be manipulated as needed. This is obviously not a robust solution, as any update to the application (and thus UI hierarchy) may break the script. A better way to interact with applications is by means of [Apple Events](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html), but not all apps expose or support those. For applications which don't expose Apple Events, UI automation is a valid, yet slightly cumbersome, alternative.
 
 The script currently works with [Tower](https://www.git-tower.com/mac/) and [SourceTree](https://www.sourcetreeapp.com) but can be easily extended. For more info on GUI scripting with JXA, see [useful links](#useful-links) section below
 
 ## Customizing the script
 
-The first thing you will want to customise are the properties which describe the structure of a ticket / issue name. Simply adjust the `ticketProperties` as shown below. In this example the properties are set-up to match an example Jira ticket with name: **TMA-1004**.  
+The first thing you will want to customize are the properties which describe the structure of a ticket / issue name. Simply adjust the `ticketProperties` , shown below are the properties to match an example Jira ticket with name: *TMA-1004*. These properties are then used to create a regular expression which does the actual matching.
 
 ```javascript
 const ticketProperties = {
@@ -37,7 +37,7 @@ const ticketProperties = {
 }
 ```
 
-Another important property is the `selectedApplication`. This should point to an object which is defined higher up in the `applications` variable. This is how you for example make the script run for Tower:
+Another important property is the `selectedApplication`. This should point to an object which is defined higher up in the `applications` variable. This is how you make the script run for Tower:
 
 ```javascript
 const selectedApplication = applications.Tower
@@ -47,7 +47,7 @@ const selectedApplication = applications.Tower
 
 Currently, the script has been tested and confirmed to be working with Tower 2.6.1 and SourceTree 2.4.1.
 
-You can easily add other applications to the script by adding it to `applications` variable. To add a new application you need to know the:
+However, you can add other applications to the script by defining the relevent properties in the `applications` variable. To add a new application you need to know the:
 
 - **application name** as seen in the menu bar next to the  menu item,
 - the UI hierarchy "**path**" pointing to the **commit** field, i.e. where you would *type* the commit message,
@@ -70,13 +70,15 @@ The hardest part is figuring out the exact hierarchy of the UI elements. To expl
 - Apple's [Accessibility Inspector](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html) (included with Xcode)
 - PFiddlesoft's excellent [UI Browser](http://pfiddlesoft.com/uibrowser/) (which can output usable AppleScript snippets)
 
+![ui-browser-screenshit](readme-assets/ui-browser.png)
+
 
 # Download
 
-Below can download an exported version of the script as stabdalone "stay-open" app that works with:
+Below can download an exported version of the script as standalone "stay-open" app::
 
-- [Tower](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.app.zip)
-- [SourceTree](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.app.zip)
+- [Tower Helper](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.zip)
+- [SourceTree Helper](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.zip)
 
 
 Make sure you add the downloaded app to Accessibility list under Privacy tab in the *System Preferences > Security & Privacy* pref pane.![screenshot-security-prefpane](readme-assets/screenshot-security-prefpane.png)
