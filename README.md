@@ -75,7 +75,7 @@ The hardest part is figuring out the exact hierarchy of the UI elements. To expl
 
 # Download
 
-Below can download an exported version of the script as standalone "stay-open" app::
+Below can download an exported version of the script as standalone "stay-open" app:
 
 - [Tower Helper](https://github.com/Kymer/Filler/raw/master/builds/Tower%20Helper.zip)
 - [SourceTree Helper](https://github.com/Kymer/Filler/raw/master/builds/SourceTree%20Helper.zip)
